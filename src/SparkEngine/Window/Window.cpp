@@ -1,0 +1,54 @@
+////////////////////////////////////////////////////////////
+// Headers
+////////////////////////////////////////////////////////////
+#include <SparkEngine/Window/Window.hpp>
+#include <SparkEngine/Window/WindowImpl.hpp>
+
+#ifdef WIN32
+
+#include <SparkEngine/Window/Win32/WindowImplWin32.hpp>
+using WindowImplType = WindowImplWin32;
+
+#endif
+
+////////////////////////////////////////////////////////////
+Window::Window()
+{
+    m_impl = new WindowImplType();
+}
+
+////////////////////////////////////////////////////////////
+Window::Window(std::string title, uint32_t width, uint32_t height)
+{
+    m_impl = new WindowImplType(title, width, height);
+}
+
+////////////////////////////////////////////////////////////
+Window::~Window()
+{
+    delete m_impl;
+}
+
+////////////////////////////////////////////////////////////
+void Window::create(std::string title, uint32_t width, uint32_t height)
+{
+    m_impl->create(std::move(title), width, height);
+}
+
+////////////////////////////////////////////////////////////
+void Window::destroy()
+{
+    m_impl->destroy();
+}
+
+////////////////////////////////////////////////////////////
+bool Window::processMessages()
+{
+    return m_impl->processMessages();
+}
+
+////////////////////////////////////////////////////////////
+bool Window::isOpen() const
+{
+    return m_impl->isOpen();
+}

@@ -1,0 +1,4 @@
+PROJECT_NAME 		= @PROJECT_NAME@
+INPUT 			= @CMAKE_SOURCE_DIR@/include
+FILE_PATTERNS       	= *.hpp
+RECURSIVE            	= YES
